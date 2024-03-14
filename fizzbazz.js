@@ -3,32 +3,28 @@ function fizzbuzzIterator() {
 
     return {
         next: function() {
-            if(defaultValue >= 10n) {
-                return {done: true}
+            let value
+
+            if (defaultValue % 3n === 0n && defaultValue % 5n === 0n) {
+                value = "FizzBuzz"
+            } else if (defaultValue % 3n === 0n) {
+                value = "Fizz"
+            } else if (defaultValue % 5n === 0n) {
+                value = "Buzz"
             } else {
-                let value
-
-                if (defaultValue % 3n === 0n && defaultValue % 5n === 0n) {
-                    value = "FizzBuzz"
-                } else if (defaultValue % 3n === 0n) {
-                    value = "Fizz"
-                } else if (defaultValue % 5n === 0n) {
-                    value = "Buzz"
-                } else {
-                    value = defaultValue
-                }
-
-                defaultValue += 1n
-                return value
+                value = defaultValue
             }
+
+            defaultValue += 1n
+            return {done: false, value}
         }
     };
 }
 
 const myFizzBazz = fizzbuzzIterator()
 
-console.log(myFizzBazz.next())
-console.log(myFizzBazz.next())
-console.log(myFizzBazz.next())
-console.log(myFizzBazz.next())
-console.log(myFizzBazz.next())
+console.log(myFizzBazz.next().value)
+console.log(myFizzBazz.next().value)
+console.log(myFizzBazz.next().value)
+console.log(myFizzBazz.next().value)
+console.log(myFizzBazz.next().value)
